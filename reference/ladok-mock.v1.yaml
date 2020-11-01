@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: ladok-mock
+  version: '1.0'
+  description: A mock Ladok API
+  license:
+    name: MIT
+  contact:
+    email: weleoka@mailfence.com
+    name: Kai Weeks
+servers:
+  - url: 'http://localhost:8282'
+    description: host-network
+  - url: 'nodemocks:8080'
+    description: docker-network
+paths:
+  /ladok:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - testing
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+              examples: {}
+      operationId: get-ladok
+      description: A testing endpoint for Ladok Mock API. Returns all users.
+components:
+  schemas:
+    user:
+      description: ''
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        surname:
+          type: string
+          minLength: 1
+        address:
+          type: string
+          minLength: 1
+        phone:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          minLength: 1
+        city:
+          type: string
+          minLength: 1
+        number:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+      required:
+        - name
+        - surname
+        - address
+        - phone
+        - email
+        - city
+        - number
+        - id
+      x-tags:
+        - testing
+tags:
+  - name: testing
