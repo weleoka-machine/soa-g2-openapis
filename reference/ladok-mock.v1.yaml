@@ -31,7 +31,7 @@ paths:
               examples: {}
       operationId: get-ladok
       description: A testing endpoint for Ladok Mock API. Returns all users.
-  /ladok/resultat:
+  /resultat:
     get:
       summary: Your GET endpoint
       tags: []
@@ -41,35 +41,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/resultat'
-              examples:
-                example-1:
-                  value:
-                    pnr: string
-                    kurskod: string
-                    modul: string
-                    datum: string
-                    betyg: string
-                    '': string
+                type: array
+                items:
+                  $ref: '#/components/schemas/resultat'
+              examples: {}
         '400':
           description: Bad Request
       operationId: get-ladok-resultat
-      description: 'Gets a Ladok result. Resultat object with fields personnummer, kurskod, modul, datum and betyg. A match will be made and the blank fields filled in and returned.'
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/resultat'
-            examples:
-              example-1:
-                value:
-                  pnr: 19920423-1234
-                  kurskod: D0024E
-                  modul: modulmin
-                  datum: ''
-                  betyg: ''
-        description: A single resultat model with missing fields.
+      description: 'Gets a Ladok result. Resultat object with fields personnummer, kurskod, modul, datum and betyg. A search will take place and matching results returned.'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: pnr
+          description: personnummer
+        - schema:
+            type: string
+          in: query
+          name: kurskod
+        - schema:
+            type: string
+          in: query
+          name: modul
+        - schema:
+            type: string
+          in: query
+          name: datum
+        - schema:
+            type: string
+          in: query
+          name: betyg
     post:
       summary: ''
       operationId: post-ladok-result
