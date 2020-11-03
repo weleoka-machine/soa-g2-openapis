@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: epok-mock.v1
+  version: '1.0'
+  contact:
+    email: weleoka@mailfence.com
+    name: Kai Weeks
+  license:
+    name: MIT
+  description: API service for EPOK which handles courses and instances as well as the defined modules.
+servers:
+  - url: 'http://localhost:8282'
+    description: host-network
+  - url: 'http://nodemocks'
+    description: docker-network
+paths:
+  /modul:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - epok
+        - mock
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/modul'
+      operationId: get-modul
+      description: Modules can be found by different search parameters. Common would be to search for them by Kod and status.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: kod
+        - schema:
+            type: string
+          in: query
+          name: description
+        - schema:
+            type: string
+          in: query
+          name: status
+components:
+  schemas:
+    modul:
+      title: Modul
+      type: object
+      properties:
+        kod:
+          type: string
+        description:
+          type: string
+          description: Translates to benämning.
+        status:
+          type: string
+          description: active or non-active
+      x-tags:
+        - epok
+        - mock
+tags:
+  - name: epok
+  - name: mock
