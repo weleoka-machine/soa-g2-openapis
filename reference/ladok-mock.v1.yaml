@@ -31,10 +31,68 @@ paths:
               examples: {}
       operationId: get-ladok
       description: A testing endpoint for Ladok Mock API. Returns all users.
+  /ladok/resultat:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resultat'
+              examples:
+                example-1:
+                  value:
+                    pnr: string
+                    kurskod: string
+                    modul: string
+                    datum: string
+                    betyg: string
+                    '': string
+        '400':
+          description: Bad Request
+      operationId: get-ladok-resultat
+      description: 'Gets a Ladok result. Resultat object with fields personnummer, kurskod, modul, datum and betyg. A match will be made and the blank fields filled in and returned.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/resultat'
+            examples:
+              example-1:
+                value:
+                  pnr: 19920423-1234
+                  kurskod: D0024E
+                  modul: modulmin
+                  datum: ''
+                  betyg: ''
+        description: A single resultat model with missing fields.
+    post:
+      summary: ''
+      operationId: post-ladok-result
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+      description: Creates a result
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/resultat'
+            examples: {}
+        description: A single Resultat model to be created.
+      tags:
+        - ladok
+    parameters: []
 components:
   schemas:
     user:
-      description: ''
+      description: This model is just here for demonstration purposes.
       type: object
       properties:
         name:
@@ -72,5 +130,32 @@ components:
         - id
       x-tags:
         - testing
+    resultat:
+      title: result
+      type: object
+      x-examples:
+        example-1:
+          pnr: 19940613-1234
+          kurskod: D0023E
+          modul: enmodul
+          datum: thisisatimestamp
+          betyg: G
+      properties:
+        pnr:
+          type: string
+        kurskod:
+          type: string
+        modul:
+          type: string
+        datum:
+          type: string
+        betyg:
+          type: string
+      required:
+        - pnr
+        - kurskod
+        - modul
+      description: The main DTO for LADOK mock API
 tags:
   - name: testing
+  - name: ladok
