@@ -11,7 +11,7 @@ info:
 servers:
   - url: 'http://localhost:8282'
     description: host-network
-  - url: 'nodemocks:8080'
+  - url: 'http://nodemocks'
     description: docker-network
 paths:
   /ladok:
