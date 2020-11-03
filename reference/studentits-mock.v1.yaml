@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: studentits-mock.v1
+  version: '1.0'
+  description: StudentITS API mocking whih offers services for registering students on courses.
+  contact:
+    email: weleoka@mailfence.com
+    name: Kai Weeks
+  license:
+    name: MIT
+servers:
+  - url: 'http://localhost:8282'
+    description: host-network
+  - url: 'http://nodemocks'
+    description: docker-network
+paths:
+  /student:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - StudentITS
+        - mock
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+        '400':
+          description: Bad Request
+      operationId: get-student
+      description: Fetches asingle instance of student information from the system.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: pnr
+          description: ''
+        - schema:
+            type: string
+          in: query
+          name: username
+components:
+  schemas:
+    student:
+      title: student
+      type: object
+      properties:
+        pnr:
+          type: string
+          description: PErsonal number in YYYYMMDD-XXXX format.
+        username:
+          type: string
+          description: The studentanvändare such as tompet-8.
+      x-tags:
+        - StudentITS
+        - mock
+tags:
+  - name: StudentITS
+  - name: mock
