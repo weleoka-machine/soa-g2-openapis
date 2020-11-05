@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: epok-mock.v1
+  title: epok-mock
   version: '1.0'
   contact:
     email: weleoka@mailfence.com

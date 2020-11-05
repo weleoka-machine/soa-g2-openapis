@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: studentits-mock.v1
+  title: studentits-mock
   version: '1.0'
   description: StudentITS API mocking whih offers services for registering students on courses.
   contact:
