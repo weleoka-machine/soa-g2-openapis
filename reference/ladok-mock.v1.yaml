@@ -14,10 +14,12 @@ servers:
   - url: 'http://nodemocks'
     description: docker-network
 paths:
-  /resultat:
+  /results:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - ladok
+        - mock
       responses:
         '200':
           description: OK
@@ -30,30 +32,30 @@ paths:
               examples: {}
         '400':
           description: Bad Request
-      operationId: get-ladok-resultat
-      description: 'Gets a Ladok result. Resultat object with fields personnummer, kurskod, modul, datum and betyg. A search will take place and matching results returned.'
+      operationId: get-ladok-results
+      description: Gets an array of Ladok results depending on url params.
       parameters:
         - schema:
             type: string
           in: query
-          name: pnr
+          name: ssn
           description: personnummer
         - schema:
             type: string
           in: query
-          name: kurskod
+          name: course_code
         - schema:
             type: string
           in: query
-          name: modul
+          name: module
         - schema:
             type: string
           in: query
-          name: datum
+          name: date
         - schema:
             type: string
           in: query
-          name: betyg
+          name: grade
     post:
       summary: ''
       operationId: post-ladok-result
@@ -75,32 +77,27 @@ paths:
     parameters: []
 components:
   schemas:
-    resultat:
+    result:
       title: result
       type: object
-      x-examples:
-        example-1:
-          pnr: 19940613-1234
-          kurskod: D0023E
-          modul: enmodul
-          datum: thisisatimestamp
-          betyg: G
+      x-examples: {}
+      description: The main DTO for LADOK mock API
       properties:
-        pnr:
+        ssn:
           type: string
-        kurskod:
+        course_code:
           type: string
-        modul:
+        module:
           type: string
-        datum:
+        date:
           type: string
-        betyg:
+        grade:
           type: string
       required:
-        - pnr
-        - kurskod
-        - modul
-      description: The main DTO for LADOK mock API
+        - ssn
+        - course_code
+        - module
 tags:
   - name: testing
   - name: ladok
+  - name: mock

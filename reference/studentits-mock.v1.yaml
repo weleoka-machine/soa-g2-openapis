@@ -14,7 +14,7 @@ servers:
   - url: 'http://nodemocks'
     description: docker-network
 paths:
-  /student:
+  /students:
     get:
       summary: Your GET endpoint
       tags:
@@ -26,11 +26,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/student'
+                type: array
+                items:
+                  $ref: '#/components/schemas/student'
         '400':
           description: Bad Request
-      operationId: get-student
-      description: Fetches asingle instance of student information from the system.
+        '':
+          description: ''
+      operationId: get-students
+      description: Fetches student information from the system.
       parameters:
         - schema:
             type: string
@@ -41,21 +45,23 @@ paths:
             type: string
           in: query
           name: username
+    parameters: []
 components:
   schemas:
     student:
       title: student
       type: object
+      x-tags:
+        - mock
+        - StudentITS
       properties:
-        pnr:
+        ssn:
           type: string
-          description: PErsonal number in YYYYMMDD-XXXX format.
+          description: 'Social Security Number can be in YYYYMMDD-XXXX format, or other.'
         username:
           type: string
           description: The studentanvändare such as tompet-8.
-      x-tags:
-        - StudentITS
-        - mock
+      description: ''
 tags:
   - name: StudentITS
   - name: mock
