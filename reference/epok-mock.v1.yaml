@@ -44,10 +44,6 @@ paths:
             type: string
           in: query
           name: status
-        - schema:
-            type: string
-          in: query
-          name: course_code
     parameters: []
 components:
   schemas:
