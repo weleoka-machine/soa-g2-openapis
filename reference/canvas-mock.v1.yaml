@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: canvas-mock.v1
+  version: '1.0'
+  description: Mock implementation of the Canvas API
+  contact:
+    name: Kai Weeks
+    email: weleoka@gitlab.com
+servers:
+  - url: 'http://localhost:8282'
+    description: host network
+  - description: docker-network
+    url: 'http://nodemocks'
+paths:
+  /assignments:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - canvas
+        - mock
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/assignment'
+      operationId: get-assignments
+      description: Returns assignents based on query params
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: assignment_id
+        - schema:
+            type: string
+          in: query
+          name: student_id
+        - schema:
+            type: string
+          in: query
+          name: grade
+        - schema:
+            type: string
+          in: query
+          name: module_id
+        - schema:
+            type: string
+          in: query
+          name: teacher_id
+        - schema:
+            type: string
+          in: query
+          name: created_at
+components:
+  schemas:
+    assignment:
+      title: result
+      type: object
+      properties:
+        assignment_id:
+          type: string
+        student_id:
+          type: string
+        grade:
+          type: string
+        module_id:
+          type: string
+        teacher_id:
+          type: string
+        created_at:
+          type: string
+      x-tags:
+        - epok
+        - mock
+tags:
+  - name: canvas
+  - name: mock

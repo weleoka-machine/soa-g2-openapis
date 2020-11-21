@@ -4,7 +4,7 @@ info:
   version: '1.0'
   description: StudentITS API mocking whih offers services for registering students on courses.
   contact:
-    email: weleoka@mailfence.com
+    email: weleoka@gitlab.com
     name: Kai Weeks
   license:
     name: MIT
@@ -18,7 +18,7 @@ paths:
     get:
       summary: Your GET endpoint
       tags:
-        - StudentITS
+        - studentits
         - mock
       responses:
         '200':
@@ -53,15 +53,24 @@ components:
       type: object
       x-tags:
         - mock
-        - StudentITS
+        - studentits
+      description: ''
       properties:
         ssn:
           type: string
           description: 'Social Security Number can be in YYYYMMDD-XXXX format, or other.'
         username:
           type: string
-          description: The studentanvändare such as tompet-8.
-      description: ''
+          description: The studentanvndare such as tompet-8. LEGACY
+        student_id:
+          type: string
+          description: The studentanvandare such as tompet-8
+        first_name:
+          type: string
+        last_name:
+          type: string
+        studentits:
+          type: string
 tags:
-  - name: StudentITS
+  - name: studentits
   - name: mock

@@ -6,7 +6,7 @@ info:
   license:
     name: MIT
   contact:
-    email: weleoka@mailfence.com
+    email: weleoka@gitlab.com
     name: Kai Weeks
 servers:
   - url: 'http://localhost:8282'
@@ -28,8 +28,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/resultat'
-              examples: {}
+                  $ref: '#/components/schemas/result'
         '400':
           description: Bad Request
       operationId: get-ladok-results
@@ -69,7 +68,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/resultat'
+              $ref: '#/components/schemas/result'
             examples: {}
         description: A single Resultat model to be created.
       tags:

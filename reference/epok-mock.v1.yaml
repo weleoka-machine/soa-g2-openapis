@@ -3,7 +3,7 @@ info:
   title: epok-mock
   version: '1.0'
   contact:
-    email: weleoka@mailfence.com
+    email: weleoka@gitlab.com
     name: Kai Weeks
   license:
     name: MIT
@@ -28,14 +28,14 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/modul'
+                  $ref: '#/components/schemas/module'
       operationId: get-modules
       description: Modules can be found by different search parameters. Common would be to search for them by Code and status.
       parameters:
         - schema:
             type: string
           in: query
-          name: code
+          name: module_id
         - schema:
             type: string
           in: query
@@ -44,6 +44,10 @@ paths:
             type: string
           in: query
           name: status
+        - schema:
+            type: string
+          in: query
+          name: course_code
     parameters: []
 components:
   schemas:
@@ -53,8 +57,9 @@ components:
       x-tags:
         - epok
         - mock
+      description: A module belongs to a course. It can be acktive or iactive.
       properties:
-        code:
+        module_id:
           type: string
         description:
           type: string
@@ -64,7 +69,6 @@ components:
           description: active or non-active
         course_code:
           type: string
-      description: A module belongs to a course. It can be acktive or iactive.
 tags:
   - name: epok
   - name: mock
